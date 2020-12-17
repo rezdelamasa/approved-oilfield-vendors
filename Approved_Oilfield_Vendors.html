@@ -8,6 +8,14 @@
 <META name="title" content="Approved Oilfield Vendors">
 <STYLE type="text/css">
 
+div[id^='page_'] > div:last-child {
+	display: none;
+}
+
+#id1_1 > table > tbody tr:nth-child(-n+3) {
+  display: none;
+}
+
 body {margin-top: 0px;margin-left: 0px;}
 
 #page_1 {position:relative; overflow: hidden;margin: 50px 0px 11px 37px;padding: 0px;border: none;width: 721px;}
@@ -1578,6 +1586,7 @@ body {margin-top: 0px;margin-left: 0px;}
 </HEAD>
 
 <BODY>
+
 <DIV id="page_1">
 
 
@@ -36453,5 +36462,25 @@ body {margin-top: 0px;margin-left: 0px;}
 </TABLE>
 </DIV>
 </DIV>
+<script type="text/javascript">
+	let pages = document.querySelectorAll('div[id^="page_"');
+	console.log(pages);
+	const queryString = window.location.search;
+	console.log(queryString);
+
+	const urlParams = new URLSearchParams(queryString);
+
+	const currentPage = urlParams.get('page');
+	console.log(Number(currentPage));
+	console.log('page_' + currentPage);
+
+	if(currentPage && Number(currentPage) < 109) {
+		pages.forEach(function(page) {
+			if(page.id != 'page_' + currentPage) {
+				page.remove();
+			}
+		})
+	}
+</script>
 </BODY>
 </HTML>
